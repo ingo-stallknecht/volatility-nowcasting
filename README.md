@@ -1,8 +1,9 @@
 # 📈 Volatility Nowcasting from Market Data + News
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+[![Tests](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/tests.yml)
+[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
 ![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting)
 
@@ -19,6 +20,7 @@ This project demonstrates:
 ## 🚀 Live Demo
 
 👉 **Streamlit App:** [Live link here](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
+
 👉 **Colab Notebook:** [Notebook link here](https://colab.research.google.com/github/ingo-stallknecht/volatility-nowcasting/blob/main/notebooks/volatility_nowcasting.ipynb)
 
 📸 *Screenshot of the app interface:*
