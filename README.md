@@ -1,7 +1,7 @@
 # 📈 Volatility Nowcasting from Market Data + News
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/workflows/ci.yml/badge.svg)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
+[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
 ![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting)
@@ -41,17 +41,40 @@ We model **log(1 + RV)** for stability and transform back into volatility for in
 
 ---
 
+## 📊 Data Science Approach
+
+This project is not just a demo dashboard — it follows a rigorous ML pipeline:
+
+- **Data**  
+  - S&P 500 daily returns, realized volatility, high-low ranges  
+  - Daily-pooled news sentiment + embeddings from FinBERT  
+
+- **Target**  
+  - Realized variance over `H=5` trading days  
+  - Modeled as log(1+RV_H) to stabilize skewed distribution  
+
+- **Validation**  
+  - **Expanding-time cross-validation** with embargo  
+  - Avoids look-ahead leakage from overlapping horizons  
+
+- **Metrics**  
+  - **R² (fit to magnitude)**  
+  - **IC (Spearman rank correlation, ordering skill)**  
+  - **QLIKE (robust volatility loss)**  
+
+- **Interpretation**  
+  - Convert back to volatility:  
+    - σ_daily = √(RV_H / H)  
+    - σ_annual ≈ σ_daily × √252  
+
+For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/volatility_nowcasting.ipynb).
+
+---
+
 ## ✨ Key Features
 
-- **Hybrid feature set**:  
-  - Market-based features (returns, rolling vols, high-low ranges)  
-  - News-based features (FinBERT sentiment, pooled embeddings)  
-- **Robust validation**:  
-  - Expanding time CV with embargo → avoids look-ahead bias  
-  - Metrics: **R²**, **IC**, **QLIKE**  
-- **Clear interpretability**:  
-  - σ_daily = √(RV_H / H)  
-  - σ_annual ≈ σ_daily × √252  
+- **Hybrid feature set**: market data + news sentiment  
+- **Robust validation**: embargoed expanding-time CV  
 - **Interactive dashboard**:  
   - OOF truth vs prediction  
   - Derived daily & annualized volatility  
