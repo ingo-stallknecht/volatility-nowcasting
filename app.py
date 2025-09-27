@@ -9,13 +9,15 @@
 # If these files are missing on Streamlit Cloud, the app will fall back to a small
 # synthetic demo dataset in /tmp to stay interactive rather than crashing.
 
-import os, json, math
+import json
+import math
+import os
 from typing import Tuple
 
+import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-import altair as alt
 
 # -----------------------------
 # Page & constants
@@ -118,7 +120,9 @@ with st.sidebar:
     st.write("CWD:", os.getcwd())
     st.write("DATA_DIR:", os.path.abspath(DATA_DIR))
     st.write("Files:", listdir_safe(DATA_DIR))
-    st.caption("If you see the demo source, commit the four data files under ./data in your repo.")
+    st.caption(
+        "If you see the demo source, commit the four data files under ./data in your repo."
+    )
 
 # -----------------------------
 # Header & description
@@ -179,7 +183,9 @@ with col1:
     st.subheader("OOF — truth vs prediction (log(1+RV_H))")
     y_plot = y_full.loc[mask].to_numpy()
     oof_plot = oof_full.loc[mask].to_numpy()
-    df_plot = pd.DataFrame({"date": dates, "truth": y_plot, "pred": oof_plot}).set_index("date")
+    df_plot = pd.DataFrame(
+        {"date": dates, "truth": y_plot, "pred": oof_plot}
+    ).set_index("date")
     st.line_chart(df_plot)
 
     st.subheader("Derived volatility: annualized (%)")
@@ -193,7 +199,12 @@ with col1:
     sigma_daily_pred = np.sqrt(rv_pred / max(H, 1))
     ann_true = sigma_daily_true * np.sqrt(TRADING_DAYS_PER_YEAR)
     ann_pred = sigma_daily_pred * np.sqrt(TRADING_DAYS_PER_YEAR)
-    st.line_chart(pd.DataFrame({"σ_annual_true": ann_true, "σ_annual_pred": ann_pred}, index=dates))
+    st.line_chart(
+        pd.DataFrame(
+            {"σ_annual_true": ann_true, "σ_annual_pred": ann_pred}, index=dates
+        )
+    )
+
 
 # -----------------------------
 # Right column: rolling IC & R² (same axis)
@@ -252,9 +263,20 @@ with col2:
         .mark_line(strokeWidth=2)
         .encode(
             x=alt.X("date:T", title="Date"),
-            y=alt.Y("value:Q", title="Rolling IC & R² (63d)", scale=alt.Scale(domain=[-1, 1])),
-            color=alt.Color("metric:N", scale=alt.Scale(domain=["IC", "R2"], range=["#1f77b4", "#ff7f0e"])),
-            tooltip=[alt.Tooltip("date:T"), alt.Tooltip("metric:N"), alt.Tooltip("value:Q", format=".3f")],
+            y=alt.Y(
+                "value:Q",
+                title="Rolling IC & R² (63d)",
+                scale=alt.Scale(domain=[-1, 1]),
+            ),
+            color=alt.Color(
+                "metric:N",
+                scale=alt.Scale(domain=["IC", "R2"], range=["#1f77b4", "#ff7f0e"]),
+            ),
+            tooltip=[
+                alt.Tooltip("date:T"),
+                alt.Tooltip("metric:N"),
+                alt.Tooltip("value:Q", format=".3f"),
+            ],
         )
         .properties(height=230)
     )
@@ -268,7 +290,7 @@ last_pred_log = float(oof_full.iloc[last_valid_idx])
 rvH_pred = math.expm1(last_pred_log) if LOG1P_TARGET else last_pred_log
 rvH_pred = max(rvH_pred, 0.0)
 sigma_daily = (rvH_pred / max(H, 1)) ** 0.5
-sigma_annual = sigma_daily * (TRADING_DAYS_PER_YEAR ** 0.5)
+sigma_annual = sigma_daily * (TRADING_DAYS_PER_YEAR**0.5)
 
 st.markdown("### Latest next-H-day forecast")
 st.metric(label=f"Annualized σ (H={H})", value=f"{sigma_annual:.2%}")

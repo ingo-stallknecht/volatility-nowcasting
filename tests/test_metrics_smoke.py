@@ -1,18 +1,24 @@
 import numpy as np
 
+
 def roll_r2(y, p, w):
-    y = np.asarray(y, float); p = np.asarray(p, float)
-    out = np.full(len(y), np.nan, float); need = max(5, int(0.8*w))
-    for i in range(w-1, len(y)):
-        ys, ps = y[i-w+1:i+1], p[i-w+1:i+1]
+    y = np.asarray(y, float)
+    p = np.asarray(p, float)
+    out = np.full(len(y), np.nan, float)
+    need = max(5, int(0.8 * w))
+    for i in range(w - 1, len(y)):
+        ys, ps = y[i - w + 1 : i + 1], p[i - w + 1 : i + 1]
         m = np.isfinite(ys) & np.isfinite(ps)
-        if m.sum() < need: continue
+        if m.sum() < need:
+            continue
         ys, ps = ys[m], ps[m]
         if np.var(ys) <= 1e-12 or np.var(ps) <= 1e-12:
-            out[i] = 0.0; continue
-        r = np.corrcoef(ys, ps)[0,1]
-        out[i] = float(r*r)
+            out[i] = 0.0
+            continue
+        r = np.corrcoef(ys, ps)[0, 1]
+        out[i] = float(r * r)
     return out
+
 
 def test_roll_r2_increases_with_better_fit():
     rng = np.random.default_rng(0)

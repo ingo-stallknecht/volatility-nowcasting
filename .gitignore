@@ -1,0 +1,38 @@
+cat > .gitignore << 'EOF'
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.log
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Virtual environments (DO NOT COMMIT) ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Caches / tooling ---
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.cache/
+
+# --- Build / dist ---
+build/
+dist/
+site/
+wheels/
+*.manifest
+*.spec
+
+# --- OS/Editor junk ---
+.DS_Store
+Thumbs.db
+*.swp
+EOF
