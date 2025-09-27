@@ -8,16 +8,12 @@ DATA = Path("data")
 
 def test_demo_files_exist():
     for name in ["feat.csv", "oof.csv", "y.csv", "meta.json"]:
-        assert (
-            DATA / name
-        ).exists(), f"Missing data/{name}. Export from notebook and commit it."
+        assert (DATA / name).exists(), f"Missing data/{name}. Export from notebook and commit it."
 
 
 def test_feat_has_date_column():
     df = pd.read_csv(DATA / "feat.csv")
-    assert (
-        "date" in df.columns
-    ), "data/feat.csv must include a 'date' column for the app."
+    assert "date" in df.columns, "data/feat.csv must include a 'date' column for the app."
     # basic parsability
     pd.to_datetime(df["date"])
 
@@ -33,9 +29,7 @@ def test_oof_and_y_shapes():
 
 def test_meta_schema():
     meta = json.loads((DATA / "meta.json").read_text())
-    assert "H" in meta and isinstance(
-        meta["H"], int
-    ), "meta.json must contain integer H."
+    assert "H" in meta and isinstance(meta["H"], int), "meta.json must contain integer H."
     assert "log1p" in meta and isinstance(
         meta["log1p"], bool
     ), "meta.json must contain boolean log1p."

@@ -1,0 +1,18 @@
+# Use LF in the repo, convert to CRLF on Windows checkout
+* text=auto eol=lf
+
+# Keep Windows scripts with CRLF on checkout
+*.bat eol=crlf
+*.cmd eol=crlf
+*.ps1 eol=crlf
+
+# Treat binary assets as binary (don’t touch endings)
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.gif -text
+*.pdf -text
+
+# Large/opaque data: do not normalize endings
+*.csv -text
+data/** -text

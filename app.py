@@ -120,9 +120,7 @@ with st.sidebar:
     st.write("CWD:", os.getcwd())
     st.write("DATA_DIR:", os.path.abspath(DATA_DIR))
     st.write("Files:", listdir_safe(DATA_DIR))
-    st.caption(
-        "If you see the demo source, commit the four data files under ./data in your repo."
-    )
+    st.caption("If you see the demo source, commit the four data files under ./data in your repo.")
 
 # -----------------------------
 # Header & description
@@ -139,19 +137,19 @@ Training uses **log(1+RV_H)** for stability, and we convert predictions back to 
 
 **How to read the charts**
 
-1) **OOF — truth vs prediction (log(1+RV_H))**  
+1) **OOF — truth vs prediction (log(1+RV_H))**
    Out-of-fold (OOF) predictions mean **no look-ahead leakage**.
 
-2) **Derived volatility: annualized (%)**  
-   Convert RV to volatility:  
+2) **Derived volatility: annualized (%)**
+   Convert RV to volatility:
    σ_daily = √(RV_H / H), and **σ_annual ≈ σ_daily × √252**.
 
-3) **Rolling metrics (63d)**  
-   - **IC (Information Coefficient)** = Spearman rank correlation.  
-     *Answers:* “Does the model get the **ordering** of higher vs lower risk right?”  
+3) **Rolling metrics (63d)**
+   - **IC (Information Coefficient)** = Spearman rank correlation.
+     *Answers:* “Does the model get the **ordering** of higher vs lower risk right?”
      Range −1…+1 (higher is better).
-   - **R² (Coefficient of Determination)** = squared Pearson correlation.  
-     *Answers:* “How much **variation in magnitude** does the model explain?”  
+   - **R² (Coefficient of Determination)** = squared Pearson correlation.
+     *Answers:* “How much **variation in magnitude** does the model explain?”
      Range 0…1 (higher is better).
 """
 )
@@ -183,9 +181,7 @@ with col1:
     st.subheader("OOF — truth vs prediction (log(1+RV_H))")
     y_plot = y_full.loc[mask].to_numpy()
     oof_plot = oof_full.loc[mask].to_numpy()
-    df_plot = pd.DataFrame(
-        {"date": dates, "truth": y_plot, "pred": oof_plot}
-    ).set_index("date")
+    df_plot = pd.DataFrame({"date": dates, "truth": y_plot, "pred": oof_plot}).set_index("date")
     st.line_chart(df_plot)
 
     st.subheader("Derived volatility: annualized (%)")
@@ -199,11 +195,7 @@ with col1:
     sigma_daily_pred = np.sqrt(rv_pred / max(H, 1))
     ann_true = sigma_daily_true * np.sqrt(TRADING_DAYS_PER_YEAR)
     ann_pred = sigma_daily_pred * np.sqrt(TRADING_DAYS_PER_YEAR)
-    st.line_chart(
-        pd.DataFrame(
-            {"σ_annual_true": ann_true, "σ_annual_pred": ann_pred}, index=dates
-        )
-    )
+    st.line_chart(pd.DataFrame({"σ_annual_true": ann_true, "σ_annual_pred": ann_pred}, index=dates))
 
 
 # -----------------------------
