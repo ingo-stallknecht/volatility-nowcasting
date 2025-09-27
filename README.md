@@ -80,10 +80,10 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
   - Derived daily & annualized volatility  
   - Rolling 63-day IC & R²  
 
-📸 *Example chart (OOF truth vs prediction):*  
-![Truth vs Prediction](assets/chart_truth_pred.png)
+📸 *Example chart (Derived volatility: annualized %)*  
+![Annualized Volatility](assets/chart_vol_annual.png)
 
-📸 *Example chart (Rolling IC & R²):*  
+📸 *Example chart (Rolling IC & R²)*  
 ![Rolling Metrics](assets/chart_ic_r2.png)
 
 ---
