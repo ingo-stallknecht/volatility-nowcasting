@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/ingo-stallknecht/volatility-nowcasting:latest
+    ports:
+      - "${PORT:-8501}:8501"
+    environment:
+      - PORT=8501
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8501/"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    # Keep the app reproducible but allow local data mounting for demo
+    volumes:
+      - ./data:/app/data:ro
+    restart: unless-stopped

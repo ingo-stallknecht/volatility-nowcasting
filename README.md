@@ -14,6 +14,7 @@ This project demonstrates:
 - **Leakage-safe cross-validation** (expanding time splits with embargo)
 - **Interpretability**: converting realized variance into daily & annualized σ (%)
 - **Deployment**: interactive **Streamlit app** + CI checks
+- **Reproducibility**: lightweight **Dockerfile** included for containerized runs
 
 ---
 

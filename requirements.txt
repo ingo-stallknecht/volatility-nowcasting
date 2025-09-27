@@ -1,6 +1,6 @@
-streamlit
-pandas
-numpy
-altair
-xgboost
-scikit-learn
+streamlit>=1.36,<2
+pandas>=2.2,<3
+numpy>=1.26,<3
+altair>=5.2,<6
+xgboost>=2.0,<3
+scikit-learn>=1.4,<2
