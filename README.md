@@ -1,7 +1,7 @@
 # 📈 Volatility Nowcasting from Market Data + News
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
+[![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
 ![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting)
@@ -81,10 +81,15 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
   - Rolling 63-day IC & R²
 
 📸 *Example chart (Derived volatility: annualized %)*
+
 ![Annualized Volatility](assets/chart_vol_annual.png)
 
+
 📸 *Example chart (Rolling IC & R²)*
+
 ![Rolling Metrics](assets/chart_ic_r2.png)
+
+
 
 ---
 
