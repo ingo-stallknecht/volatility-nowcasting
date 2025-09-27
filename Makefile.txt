@@ -1,0 +1,20 @@
+.PHONY: install dev test run fmt lint
+
+install:
+\tpip install -r requirements.txt
+
+dev:
+\tpip install -r requirements.txt
+\tpip install -r requirements-dev.txt
+
+test:
+\tpytest -q
+
+run:
+\tstreamlit run app.py
+
+fmt:
+\tblack .
+
+lint:
+\truff . --fix

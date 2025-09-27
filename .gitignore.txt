@@ -1,0 +1,75 @@
+# Python / build
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+build/
+dist/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+wheels/
+share/python-wheels/
+
+# Caches / tests
+htmlcov/
+.tox/
+.nox/
+.coverage*
+.cache
+.pytest_cache/
+.hypothesis/
+.ruff_cache/
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.ipynb_save
+*.ipynb_checkpoints/
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+__pypackages__/
+.pdm-python
+.pdm-build/
+.pixi/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.spyderproject
+.spyproject
+.ropeproject
+
+# Logs
+*.log
+*.out
+*.err
+
+# Streamlit
+.streamlit/**
+!.streamlit/config.toml
+.streamlit/secrets.toml
+
+# Artifacts & large data (keep only tiny demo files)
+artifacts/
+data/
+!data/feat.csv
+!data/oof.csv
+!data/y.csv
+!data/meta.json
+
+# Misc / credentials
+.pypirc
+secrets.json
+cloudflared*
