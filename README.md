@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/workflows/ci.yml/badge.svg)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
 ![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting)
 
 Predicting **short-horizon S&P 500 volatility** (`H=5` trading days) by combining **market features** (returns, realized vols, price ranges) with **daily-pooled news signals** (FinBERT sentiment + embeddings).  
@@ -17,7 +18,7 @@ This project demonstrates:
 
 ## 🚀 Live Demo
 
-👉 **Streamlit App:** [Live link here](https://your-streamlit-app-link)  
+👉 **Streamlit App:** [Live link here](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)  
 👉 **Colab Notebook:** [Notebook link here](https://colab.research.google.com/github/ingo-stallknecht/volatility-nowcasting/blob/main/notebooks/volatility_nowcasting.ipynb)  
 
 📸 *Screenshot of the app interface:*  
