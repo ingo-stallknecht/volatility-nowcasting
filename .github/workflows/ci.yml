@@ -31,20 +31,24 @@ jobs:
         run: |
           pip install -r requirements-dev.txt
 
+      # ----------------------
+      # Code style & linting
+      # ----------------------
       - name: Black (check only)
         run: |
           black --version
-          black . --check
+          black app.py tests --check
 
       - name: Ruff (lint)
         run: |
           ruff --version
-          ruff . --output-format=github
+          ruff check app.py tests --output-format=github
 
+      # ----------------------
+      # Unit tests
+      # ----------------------
       - name: Pytest
         env:
-          # If your tests read small demo files from ./data, nothing else is needed.
-          # If later you need env vars, add them here (never commit secrets).
           PYTHONWARNINGS: ignore::DeprecationWarning
         run: |
           pytest -q
