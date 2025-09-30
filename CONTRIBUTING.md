@@ -5,7 +5,7 @@ This repo demonstrates short-horizon **S&P 500 volatility nowcasting** from mark
 
 ---
 
-## 🛠️ How to run locally
+## How to run locally
 
 Clone the repo, install dependencies, and run the app:
 
