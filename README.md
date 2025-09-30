@@ -1,4 +1,4 @@
-# 📈 Volatility Nowcasting from Market Data + News
+# Volatility Nowcasting from Market Data + News
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
@@ -18,18 +18,18 @@ This project demonstrates:
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-👉 **Streamlit App:** [Live link here](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
+**Streamlit App:** [Live link here](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
 
-👉 **Colab Notebook:** [Notebook link here](https://colab.research.google.com/github/ingo-stallknecht/volatility-nowcasting/blob/main/notebooks/volatility_nowcasting.ipynb)
+**Colab Notebook:** [Notebook link here](https://colab.research.google.com/github/ingo-stallknecht/volatility-nowcasting/blob/main/notebooks/volatility_nowcasting.ipynb)
 
-📸 *Screenshot of the app interface:*
+*Screenshot of the app interface:*
 ![App Screenshot](assets/screenshot_app.png)
 
 ---
 
-## 🧩 Problem Statement
+## Problem Statement
 
 Financial markets are highly dynamic, and **near-term volatility forecasting** is central to:
 - **Risk management** (e.g., VaR, capital buffers)
@@ -44,7 +44,7 @@ We model **log(1 + RV)** for stability and transform back into volatility for in
 
 ---
 
-## 📊 Data Science Approach
+## Data Science Approach
 
 This project is not just a demo dashboard — it follows a rigorous ML pipeline:
 
@@ -74,7 +74,7 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Hybrid feature set**: market data + news sentiment
 - **Robust validation**: embargoed expanding-time CV
@@ -83,12 +83,12 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
   - Derived daily & annualized volatility
   - Rolling 63-day IC & R²
 
-📸 *Example chart (Derived volatility: annualized %)*
+*Example chart (Derived volatility: annualized %)*
 
 ![Annualized Volatility](assets/chart_vol_annual.png)
 
 
-📸 *Example chart (Rolling IC & R²)*
+*Example chart (Rolling IC & R²)*
 
 ![Rolling Metrics](assets/chart_ic_r2.png)
 
@@ -96,7 +96,7 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
 
 ---
 
-## 👀 Preview of Results
+## Preview of Results
 
 **Latest next-H-day forecast** (example values):
 - Annualized σ (H=5): **17.9%**
@@ -105,7 +105,7 @@ For full details, see the [notebooks/volatility_nowcasting.ipynb](notebooks/vola
 
 ---
 
-## 🛠️ How to Run Locally
+## How to Run Locally
 
 Clone the repo, install dependencies, and run the app:
 
