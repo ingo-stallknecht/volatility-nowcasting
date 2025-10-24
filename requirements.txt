@@ -1,6 +1,21 @@
+# --- Core libraries ---
 streamlit>=1.36,<2
 pandas>=2.2,<3
 numpy>=1.26,<3
 altair>=5.2,<6
-xgboost>=2.0,<3
 scikit-learn>=1.4,<2
+
+# --- XGBoost ---
+# Works on Colab GPU (CUDA 12) and local CPU runtimes.
+# If a GPU is available, XGBoost will automatically use it via `device="cuda"`.
+xgboost==3.1.1
+
+# --- NLP / Transformer models ---
+transformers>=4.44,<5
+sentence-transformers>=3.0,<4
+datasets>=2.20,<3
+torch>=2.4,<3
+
+# --- Utilities ---
+tqdm>=4.66,<5
+yfinance>=0.2.43,<1
