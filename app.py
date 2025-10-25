@@ -265,13 +265,24 @@ with col2:
 # -----------------------------
 # Latest forecast card
 # -----------------------------
-last_valid_idx = int(pd.Series(oof_full).last_valid_index())
-last_pred_log = float(oof_full.iloc[last_valid_idx])
-rvH_pred = math.expm1(last_pred_log) if LOG1P_TARGET else last_pred_log
-rvH_pred = max(rvH_pred, 0.0)
-sigma_daily = (rvH_pred / max(H, 1)) ** 0.5
-sigma_annual = sigma_daily * (TRADING_DAYS_PER_YEAR**0.5)
+last_valid_idx = pd.Series(oof_full).last_valid_index()
+if last_valid_idx is None:
+    st.warning("No valid prediction available for the latest forecast.")
+else:
+    last_valid_idx = int(last_valid_idx)
+    last_pred_log = float(oof_full.iloc[last_valid_idx])
 
-st.markdown("### Latest next-H-day forecast")
-st.metric(label=f"Annualized σ (H={H})", value=f"{sigma_annual:.2%}")
-st.caption(f"RV_H≈{rvH_pred:.6f} • σ_daily≈{sigma_daily:.2%}")
+    # Predicted next-H-day realized variance (model output space)
+    rvH_pred = math.expm1(last_pred_log) if LOG1P_TARGET else last_pred_log
+    rvH_pred = max(rvH_pred, 0.0)
+
+    # Implied daily and annualized volatility derived from the H-day forecast
+    sigma_daily = (rvH_pred / max(H, 1)) ** 0.5
+    sigma_annual = sigma_daily * (TRADING_DAYS_PER_YEAR**0.5)
+
+    st.markdown("### Forecast for next H-day period")
+    st.metric(label=f"Implied annualized volatility (H={H})", value=f"{sigma_annual:.2%}")
+    st.caption(
+        f"Predicted {H}-day realized variance RV_H ≈ {rvH_pred:.6f}  •  "
+        f"Implied daily volatility ≈ {sigma_daily:.2%}"
+    )
