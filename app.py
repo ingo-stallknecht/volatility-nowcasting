@@ -133,14 +133,17 @@ Training uses **log(1+RV_H)** for stability, and we convert predictions back to 
 
 **How to read the charts**
 
-1) **OOF — truth vs prediction (log(1+RV_H))**
+1. **OOF — truth vs prediction (log(1+RV_H))**
+
    Out-of-fold (OOF) predictions mean **no look-ahead leakage**.
 
-2) **Derived volatility: annualized (%)**
-   Convert RV to volatility:
-   σ_daily = √(RV_H / H), and **σ_annual ≈ σ_daily × √252** (≈ trading days per year).
+2. **Derived volatility: annualized (%)**
 
-3) **Rolling metrics (63d)**
+   Convert RV to volatility:
+   `σ_daily = √(RV_H / H)` and `σ_annual ≈ σ_daily × √252` (≈ trading days per year).
+
+3. **Rolling metrics (63d)**
+
    - **IC (Information Coefficient)** = Spearman rank correlation (ordering accuracy), range −1…+1.
    - **R²** = squared Pearson correlation (magnitude fit), range 0…1.
 """
