@@ -118,35 +118,33 @@ st.title("Volatility Nowcasting — S&P 500")
 
 if IS_DEMO:
     st.info(
-        "Using a small synthetic **demo dataset**. "
-        "If this is your deployed app, commit the four files under `./data` in your repo: "
-        "`feat.csv`, `oof.csv`, `y.csv`, `meta.json`."
+        "Using a small synthetic demo dataset. "
+        "If this is your deployed app, commit the four files under ./data in your repo: "
+        "feat.csv, oof.csv, y.csv, meta.json."
     )
 
+# Use HTML <br> for reliable line breaks without inline code “grey boxes”
 st.markdown(
     """
 **What this dashboard shows**
 
-We estimate **near-term market risk** by predicting the next **H** trading days’ **realized variance (RV)** of the S&P 500.
-The model is trained on **prices** (returns, realized vols, ranges) plus **daily-pooled news** (FinBERT sentiment & embeddings).
+We estimate near-term market risk by predicting the next **H** trading days’ realized variance (RV) of the S&P 500.
+The model is trained on prices (returns, realized vols, ranges) plus daily-pooled news (FinBERT sentiment & embeddings).
 Training uses **log(1+RV_H)** for stability, and we convert predictions back to **volatility (σ)** so results are readable in percent.
 
 **How to read the charts**
 
-1. **OOF — truth vs prediction (log(1+RV_H))**
+1. **OOF — truth vs prediction (log(1+RV_H))**<br>
+   Out-of-fold (OOF) predictions mean no look-ahead leakage.
 
-   Out-of-fold (OOF) predictions mean **no look-ahead leakage**.
+2. **Derived volatility: annualized (%)**<br>
+   Convert RV to volatility: σ_daily = √(RV_H / H) and σ_annual ≈ σ_daily × √252 (≈ trading days per year).
 
-2. **Derived volatility: annualized (%)**
-
-   Convert RV to volatility:
-   `σ_daily = √(RV_H / H)` and `σ_annual ≈ σ_daily × √252` (≈ trading days per year).
-
-3. **Rolling metrics (63d)**
-
-   - **IC (Information Coefficient)** = Spearman rank correlation (ordering accuracy), range −1…+1.
-   - **R²** = squared Pearson correlation (magnitude fit), range 0…1.
-"""
+3. **Rolling metrics (63d)**<br>
+   IC (Information Coefficient) = Spearman rank correlation (ordering accuracy), range −1…+1.<br>
+   R² = squared Pearson correlation (magnitude fit), range 0…1.
+""",
+    unsafe_allow_html=True,
 )
 
 # -----------------------------
