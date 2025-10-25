@@ -60,7 +60,7 @@ def ensure_demo_data(base: str):
 
 def detect_data_dir() -> Tuple[str, bool]:
     """
-    Prefer repo ./data on Streamlit Cloud. If missing/incomplete, fall back to /tmp/vol_demo
+    Prefer repo ./data. If missing/incomplete, fall back to /tmp/vol_demo
     and populate a tiny demo dataset. Returns (data_dir, is_demo).
     """
     repo_data = "data"
@@ -112,20 +112,16 @@ oof = oof[:n]
 y = y[:n]
 
 # -----------------------------
-# Sidebar diagnostics
-# -----------------------------
-with st.sidebar:
-    st.markdown("#### Data diagnostics")
-    st.write("**Source:**", "demo (/tmp/vol_demo)" if IS_DEMO else "repo ./data")
-    st.write("CWD:", os.getcwd())
-    st.write("DATA_DIR:", os.path.abspath(DATA_DIR))
-    st.write("Files:", listdir_safe(DATA_DIR))
-    st.caption("If you see the demo source, commit the four data files under ./data in your repo.")
-
-# -----------------------------
 # Header & description
 # -----------------------------
 st.title("Volatility Nowcasting — S&P 500")
+
+if IS_DEMO:
+    st.info(
+        "Using a small synthetic **demo dataset**. "
+        "If this is your deployed app, commit the four files under `./data` in your repo: "
+        "`feat.csv`, `oof.csv`, `y.csv`, `meta.json`."
+    )
 
 st.markdown(
     """
@@ -142,15 +138,11 @@ Training uses **log(1+RV_H)** for stability, and we convert predictions back to 
 
 2) **Derived volatility: annualized (%)**
    Convert RV to volatility:
-   σ_daily = √(RV_H / H), and **σ_annual ≈ σ_daily × √252**.
+   σ_daily = √(RV_H / H), and **σ_annual ≈ σ_daily × √252** (≈ trading days per year).
 
 3) **Rolling metrics (63d)**
-   - **IC (Information Coefficient)** = Spearman rank correlation.
-     *Answers:* “Does the model get the **ordering** of higher vs lower risk right?”
-     Range −1…+1 (higher is better).
-   - **R² (Coefficient of Determination)** = squared Pearson correlation.
-     *Answers:* “How much **variation in magnitude** does the model explain?”
-     Range 0…1 (higher is better).
+   - **IC (Information Coefficient)** = Spearman rank correlation (ordering accuracy), range −1…+1.
+   - **R²** = squared Pearson correlation (magnitude fit), range 0…1.
 """
 )
 
@@ -233,7 +225,9 @@ def roll_ic(y_arr, p_arr, w):
         m = np.isfinite(ys) & np.isfinite(ps)
         if m.sum() < need:
             continue
-        out[i] = pd.Series(ys[m]).corr(pd.Series(ps[m]), method="spearman")
+        ys = ys[m]
+        ps = ps[m]
+        out[i] = pd.Series(ys).corr(pd.Series(ps), method="spearman")
     return out
 
 
@@ -255,15 +249,8 @@ with col2:
         .mark_line(strokeWidth=2)
         .encode(
             x=alt.X("date:T", title="Date"),
-            y=alt.Y(
-                "value:Q",
-                title="Rolling IC & R² (63d)",
-                scale=alt.Scale(domain=[-1, 1]),
-            ),
-            color=alt.Color(
-                "metric:N",
-                scale=alt.Scale(domain=["IC", "R2"], range=["#1f77b4", "#ff7f0e"]),
-            ),
+            y=alt.Y("value:Q", title="Rolling IC & R² (63d)", scale=alt.Scale(domain=[-1, 1])),
+            color=alt.Color("metric:N", scale=alt.Scale(domain=["IC", "R2"])),
             tooltip=[
                 alt.Tooltip("date:T"),
                 alt.Tooltip("metric:N"),
@@ -287,9 +274,3 @@ sigma_annual = sigma_daily * (TRADING_DAYS_PER_YEAR**0.5)
 st.markdown("### Latest next-H-day forecast")
 st.metric(label=f"Annualized σ (H={H})", value=f"{sigma_annual:.2%}")
 st.caption(f"RV_H≈{rvH_pred:.6f} • σ_daily≈{sigma_daily:.2%}")
-
-st.markdown("---")
-st.caption(
-    "OOF = out-of-fold predictions from expanding time splits with embargo (no look-ahead leakage). "
-    "Annualization uses √252 trading days."
-)
