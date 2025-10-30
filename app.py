@@ -114,7 +114,7 @@ y = y[:n]
 # -----------------------------
 # Header & description
 # -----------------------------
-st.title("Volatility Nowcasting — S&P 500")
+st.title("S&P 500 Volatility Nowcasting")
 
 if IS_DEMO:
     st.info(
@@ -128,9 +128,9 @@ st.markdown(
     """
 **What this dashboard shows**
 
-We estimate near-term market risk by predicting the next **H** trading days’ realized variance (RV) of the S&P 500.
+We estimate near-term market risk by predicting the next H trading days’ realized variance (RV) of the S&P 500.
 The model is trained on prices (returns, realized vols, ranges) plus daily-pooled news (FinBERT sentiment & embeddings).
-Training uses **log(1+RV_H)** for stability, and we convert predictions back to **volatility (σ)** so results are readable in percent.
+Training uses log(1+RV_H) for stability, and we convert predictions back to volatility (σ) so results are readable in percent.
 
 **How to read the charts**
 

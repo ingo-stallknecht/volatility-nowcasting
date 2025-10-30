@@ -46,7 +46,7 @@ We model **log(1 + RV)** for stability and transform back into volatility for in
 
 ## Data Science Approach
 
-This project is not just a demo dashboard — it follows a rigorous ML pipeline:
+This project goes beyond a demo dashboard and follows a rigorous ML pipeline.
 
 - **Data**
   - S&P 500 daily returns, realized volatility, high-low ranges
