@@ -5,7 +5,7 @@
 [![Tests](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/tests.yml)
 [![CI](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ingo-stallknecht/volatility-nowcasting/actions/workflows/ci.yml)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://volatility-nowcasting-amnkt4qrxfduzwsmwwdbca.streamlit.app/)
-![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting)
+![Last Commit](https://img.shields.io/github/last-commit/ingo-stallknecht/volatility-nowcasting?cacheSeconds=3600)
 
 Predicting **short-horizon S&P 500 volatility** (`H=5` trading days) by combining **market features** (returns, realized vols, price ranges) with **daily-pooled news signals** (FinBERT sentiment + embeddings).
 
