@@ -1,16 +1,25 @@
-# Contributing to Volatility Nowcasting
+# Contributing
 
-Thanks for your interest in this project!
-This repo demonstrates short-horizon **S&P 500 volatility nowcasting** from market data and news, with an interactive **Streamlit app** and reproducible **notebooks**.
+Thank you for your interest in improving this project.
 
----
+## Setup
 
-## How to run locally
+    git clone https://github.com/ingo-stallknecht/volatility-nowcasting.git
+    cd volatility-nowcasting
+    pip install -r requirements.txt
 
-Clone the repo, install dependencies, and run the app:
+## Running the application
 
-```bash
-git clone https://github.com/ingo-stallknecht/volatility-nowcasting.git
-cd volatility-nowcasting
-pip install -r requirements.txt
-streamlit run app.py
+    streamlit run app.py
+
+## Code quality
+
+    pre-commit run --all-files
+
+## Tests
+
+    pytest
+
+## Submitting changes
+
+Create a feature branch, make your changes, ensure tests and checks pass, then open a pull request.
